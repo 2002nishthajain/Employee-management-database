@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% block content %}
+<h1> Employees </h1>
+{% if emp_list %}
+
+    {% for emp in emp_list %}
+    <p> 
+        <a href = "{{ emp.get_absolute_url }}">{{ emp.First_Name}}</a>: {{emp.Position}}
+    </p>
+    {% endfor %}
+
+{% else %}
+<p> There are no employees</p>
+{% endif %}
+{% endblock %}

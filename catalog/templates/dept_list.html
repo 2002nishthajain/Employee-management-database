@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+            background-image: url('maxresdefault.jpg');
+          }
+    </style>
+</head>
+{% block content %}
+<h1> Departments </h1>
+{% if dept_list %}
+<ul>
+    {% for dept in dept_list %}
+    <p> 
+        <a href = "{{ dept.get_absolute_url }}">{{ dept.id}}</a>: {{dept.Department}}
+    </p>
+    {% endfor %}
+</ul>
+{% else %}
+<p> There are no employees</p>
+{% endif %}
+{% endblock %}
+

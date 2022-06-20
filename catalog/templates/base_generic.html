@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Employee Database </title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- Add additional CSS in static file -->
+  <style>
+    body {
+      margin: 2;
+      padding: 0;
+      color: black;
+      background: lightblue;
+  }
+
+  .sidebar-nav {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #264b5d;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background-image: url('maxresdefault.jpg');
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #264b5d;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar-nav a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar-nav a.active {
+  background-color: #04AA6D;
+  color: lightblue;
+}
+
+.sidebar-nav a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+a:link, a:visited {
+  background-color: #264b5d;
+  color:white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #264b5d;
+}
+  </style>
+</head>
+
+<body>  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+      {% block sidebar %}
+        <div class="sidebar-nav">
+          <p><a href="{% url 'index' %}">Home</a></p>
+          <p><a href="{% url 'Employees' %}">Employees</a></p> 
+          <p><a href="{% url 'Departments' %}">Departments</a></p>
+	        <p><a href="{% url 'Projects' %}">Projects</a></p>
+          <p><a href="{% url 'Employees_create' %}">Add new employee</a></p>
+          {% if user.is_authenticated %}
+          <p>User: {{ user.get_username }}</p>
+          <p><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></p>
+          {% else %}
+          <p><a href="{% url 'login'%}?next={{request.path}}">Login</a></p>
+          {% endif %}
+      {% endblock %}
+        </div>
+      </div>
+    <div class="col-sm-10 ">
+      {% block content %}
+      {% endblock %}
+    {% block pagination %}
+    {% if is_paginated %}
+      <div class="pagination">
+        <span class="page-links">
+          {% if page_obj.has_previous %}
+            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+                <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+              {% if page_obj.has_next %}
+            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+          {% endif %}
+        </span>
+      </div>
+    {% endif %}
+  {% endblock %}
+</div>
+</div>
+</div>
+</body>
+</html>

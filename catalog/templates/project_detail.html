@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+<!-- Add additional CSS in static file -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+
+{% block content %}
+
+<h1>Project ID: {{project_detail.id}}</h1>
+
+<h2><strong>ID:</strong> {{ project_detail.Project }}</h2>
+<h3><strong>Project Description:</strong> {{ project_detail.Detail }}</h3>
+
+{% endblock %}
+

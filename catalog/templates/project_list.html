@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+<!-- Add additional CSS in static file -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+
+{% block content %}
+<h1> Projects </h1>
+{% if project_list %}
+<ul>
+    {% for project in project_list %}
+    <p> 
+        <a href = "{{ project.get_absolute_url }}">{{ project.id}}</a>: {{project.Project}}
+    </p>
+    {% endfor %}
+</ul>
+{% else %}
+<p> There are no Projects</p>
+{% endif %}
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+<!-- Add additional CSS in static file -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+{% block content %}
+  <h1>Employee Database</h1>
+  <p>Welcome!</p>
+  <p>Developed by <em>Nishtha Jain and Rakshith Krishna</em></p>
+  <h2>Dynamic content</h2>
+  <p>Find all the details related to employee</p>
+  <p>The Database has the following record counts:</p>
+  <ul>
+    <li><strong>Employees:</strong> {{ num_emp }}</li>
+    <li><strong>Departments:</strong> {{ num_dept }}</li>
+    <li><strong>Projects:</strong> {{ num_project }}</li>
+  </ul>
+  
+{% endblock %}
+
+
+<!--{% load static %}-->
+<!--<img src="{% static 'catalog/images/local_library_model_uml.png' %}" alt="UML diagram" style="width:555px;height:540px;">-->

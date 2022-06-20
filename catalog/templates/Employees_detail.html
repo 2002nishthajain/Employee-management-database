@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% block content %}
+
+<h1>Name : {{Employees_detail.First_Name}}</h1>
+
+<h2>Personal Details</h2>
+  <p><strong>ID:</strong> {{ Employees_detail.id }}</p>
+  <p><strong>DOB:</strong> {{ Employees_detail.Birth_Date }}</p>
+  <p><strong>Gender:</strong> {{ Employees_detail.Gender }}</p>
+
+  <h2>Professional Details</h2>
+  <p><strong>Joining Date:</strong> {{ Employees_detail.Hire_Date }}</p>
+  <p><strong>Position:</strong> {{ Employees_detail.Position }}</p>
+  <p><strong>Department:</strong> <a href="{{Employees_detail.Department.get_absolute_url}}">{{ Employees_detail.Department}}</a></p>
+  <p><strong>Project:</strong> <a href="{{Employees_detail.Project.get_absolute_url}}">{{ Employees_detail.Project }}</a></p> 
+  <p><strong>Salary :</strong> {{ Employees_detail.Salary }}</p>
+
+{% endblock %}
+
